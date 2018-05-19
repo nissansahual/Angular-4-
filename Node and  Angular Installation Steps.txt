@@ -1,0 +1,147 @@
+Step to Install Node and Npm with Angular
+----------------------------------------------------------
+
+1. Download Node from https://nodejs.org/en/
+2. Extract into C Drive (Path -> c:)
+3. Open User Account from Control Panel.
+4. Click on Change my Envinronment Varaible from Left side Panel
+5. User User Varaibles Add/Modify Varaible = PATH ; Value=C:/nodejs
+6. Open CMD and type to check whether node is installed successfully  ->   node -v  -> It should show u the version
+7. Type npm -v it should u the version.
+8. To set proxy setting type the below command accordinly to ur system
+
+For NAM:
+npm config set proxy http://webproxy.wlb2.nam.nsroot.net:8080
+npm config set https-proxy http://webproxy.nam.apac.nsroot.net:8080
+
+FOR APAC: 
+npm config set proxy http://webproxy.wlb2.apac.nsroot.net:8080
+npm config set https-proxy http://webproxy.wlb2.apac.nsroot.net:8080
+
+9. To Download Angular(v4) Package type below command
+
+npm install -g @angular/cli
+
+If it fails the you have to change the proxy setting to either one from step 8.
+
+
+10. Once successfully done create a new angular project using the below command
+
+ng new my-app
+It will take some time to download(default download location -> C:\Users\YourUsername
+
+11. Once done type ng v in cmd it should list the angular version. Then angular latest package is installed successfully
+
+12. Go to the project directory and start the server.
+
+For Example ( we have created a project name my-app)
+
+chanage the directy to my-app cd c:\Users\YourUsername\my-app
+
+Below command will start the server
+ng serve --open
+
+Open done. Browser will launch MyApp with http://localhost:4200/
+
+13. To get started with any angular refer any tutorial page or https://angular.io/
+
+
+
+
+
+Code to create a new module
+-----------------------------------------
+ng g c module_name
+
+ where ->g is short for generate, c is short for component 
+
+
+
+
+To Import external style and script there are two methods.
+-----------------------------------------------------------------------------
+
+1. Using NPM
+-------------------
+
+
+
+1) Install bootstrap using npm
+
+npm install bootstrap --save
+after the installation of Bootstrap 4, we Need two More javascript Package that is Jquery and Popper.js without these two package bootstrap is not complete because Bootstrap 4 is using Jquery and popper.js package so we have to install as well
+
+2) Install JQUERY
+
+npm install jquery --save
+3) Install Popper.js
+
+npm install popper.js --save
+Now Bootstrap is Install on you Project Directory inside node_modules Folder
+
+open .angular-cli.json this file are available on you angular directory open that file and add the path of bootstrap, jquery, and popper.js files inside styles[] and scripts[] path see the below example
+
+"styles": [   
+    "../node_modules/bootstrap/dist/css/bootstrap.min.css",
+    "styles.css"
+  ],
+  "scripts": [  
+    "../node_modules/jquery/dist/jquery.min.js",
+    "../node_modules/popper.js/dist/umd/popper.min.js",
+    "../node_modules/bootstrap/dist/js/bootstrap.min.js"
+  ],
+Note: Don't change a sequence of js file it should be like this
+
+
+
+2. Addding in project index.html
+----------------------------------------------
+
+
+Just add the url inside as link and script tag like usual html file
+
+
+
+
+Import Json Data
+----------------
+
+1. Open app.module.ts and add the below code
+
+import { HttpClientModule } from '@angular/common/http';/*added for to read json*/
+
+	Under Import array add   HttpClientModule
+	
+	
+2. Create a json with the data inside asset folder
+
+3. Open ur application ts file 
+
+	Import the below line
+	
+	import { HttpClient } from '@angular/common/http';
+	import { HttpErrorResponse } from '@angular/common/http';
+	
+	
+	Add the below line under class
+	------------------------------
+	
+	constructor (private httpService: HttpClient) { }
+  createAName: string [];
+
+  ngOnInit () {
+    this.httpService.get('./assets/temp.json').subscribe(
+      data => {
+        this.createAName = data as string [];	 // FILL THE ARRAY WITH DATA.
+        //  console.log(this.createAName[1]);
+      },
+      (err: HttpErrorResponse) => {
+        console.log (err.message);
+      }
+    );
+  }
+
+
+
+
+
