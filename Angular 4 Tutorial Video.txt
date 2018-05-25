@@ -2,6 +2,9 @@ https://coursetro.com/courses/12/Learn-Angular-4-from-Scratch
 https://codecraft.tv/courses/angular/built-in-directives/ngstyle-and-ngclass/
 https://www.tutorialspoint.com/angular4/index.htm
 https://coursetro.com/posts/code/52/Trying-out-the-New-Angular-4-If-Else-Conditionals
-
-
 https://programmingwithmosh.com/angular/angular-4-tutorial/
+
+
+How to save json 
+
+https://gyandeeps.com/json-file-write/
